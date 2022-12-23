@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Age extends StatefulWidget {
-  const Age({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Age> createState() => _AgeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _AgeState extends State<Age> {
+class _HomeState extends State<Home> {
   TextEditingController txttday =
   TextEditingController(text: "${DateTime.now().day}");
   TextEditingController txttmonth =
@@ -23,6 +23,8 @@ class _AgeState extends State<Age> {
   int day = 0;
   int tb=0;
   int td=0;
+  int nd=0;
+  int nm=0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,6 +33,7 @@ class _AgeState extends State<Age> {
           title: Text("Age Calculator"),
           centerTitle: true,
           backgroundColor: Colors.blueGrey.shade900,
+          leading: Container(),
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -229,6 +232,7 @@ class _AgeState extends State<Age> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));
                             });
                           },
                           child: Container(
@@ -268,9 +272,25 @@ class _AgeState extends State<Age> {
                             setState(() {
                               tb=b;
                               td=a;
-                              year = z-c;
-                              month =y-b;
-                              day =x-a;
+                              year=z-c;
+                              if(y>=b)
+                              {
+                                if(a>=x)
+                                {
+                                  day = 30+x-a;
+                                  month = y-b-1;
+                                  nd = 30-day;
+                                  nm=12-month;
+
+                                }
+                                else
+                                {
+                                  day =x-a;
+                                  month = y-b;
+                                  nd = 30-day;
+                                  nm=12-month;
+                                }
+                              }
                             });
                           },
                           child: Container(
@@ -391,7 +411,7 @@ class _AgeState extends State<Age> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "$tb",
+                                  "$nm",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Text(
@@ -409,7 +429,7 @@ class _AgeState extends State<Age> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "$td",
+                                  "$nd",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Text(
