@@ -1,339 +1,430 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Age extends StatefulWidget {
+  const Age({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Age> createState() => _AgeState();
 }
 
-class _HomeState extends State<Home> {
-  TextEditingController txtDate =
-  TextEditingController(text: "${DateTime.now()}");
-  TextEditingController cuDate = TextEditingController();
-  TextEditingController cuMonth = TextEditingController();
-  TextEditingController cuYear = TextEditingController();
-  int date = 00;
-  int month = 00;
-  int year = 0000;
+class _AgeState extends State<Age> {
+  TextEditingController txttday =
+  TextEditingController(text: "${DateTime.now().day}");
+  TextEditingController txttmonth =
+  TextEditingController(text: "${DateTime.now().month}");
+  TextEditingController txttyear =
+  TextEditingController(text: "${DateTime.now().year}");
+  TextEditingController txtbday = TextEditingController();
+  TextEditingController txtbmonth = TextEditingController();
+  TextEditingController txtbyear = TextEditingController();
 
+  int year = 0;
+  int month = 0;
+  int day = 0;
+  int tb=0;
+  int td=0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: const Icon(Icons.all_inclusive),
-          backgroundColor: const Color(0xFF203A43),
+          title: Text("Age Calculator"),
           centerTitle: true,
-          title: const Text("Age Calculator",
-              style: TextStyle(color: Colors.white, letterSpacing: 2)),
+          backgroundColor: Colors.blueGrey.shade900,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Today's Date",
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    fontSize: 15,
-                    color: Color(0xFF203A43),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                TextField(
-                  controller: txtDate,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                          color: Color(0xFF203A43),
-                          style: BorderStyle.solid,
-                          width: 2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  "Date of Birth",
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    color: Color(0xFF203A43),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 120,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: TextField(
-                          controller: cuYear,
-                          decoration: InputDecoration(
-                            hintText: "DD",
-
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFF203A43),
-                                  style: BorderStyle.solid,
-                                  width: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 120,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: TextField(
-                          controller: cuMonth,
-                          decoration: InputDecoration(
-                            hintText: "MM",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFF203A43),
-                                  style: BorderStyle.solid,
-                                  width: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 120,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: TextField(
-                          controller: cuDate,
-                          decoration: InputDecoration(
-                            hintText: "YYYY",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFF203A43),
-                                  style: BorderStyle.solid,
-                                  width: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: const Color(0xFF203A43),
-                          ),
-                        ),
-                        child: const Text("Clear",
-                            style: TextStyle(
-                                color: Color(0xFF203A43),
-                                fontSize: 20,
-                                letterSpacing: 2),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(colors: [
-                            const Color(0xFF203A43),
-                            Colors.teal.shade700,
-                            //Color(0xFF203A43),
-                          ]),
-                        ),
-                        child: const Text("Calculate",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                letterSpacing: 2),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                const Text(
-                  "Present Age",
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    color: Color(0xFF203A43),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: const LinearGradient(colors: [
-                      Color(0xFF13547A),
-                      Color(0xFF203A43),
-                    ]),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Today's Date"),
+                  SizedBox(height: 5),
+                  Row(
                     children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                          // border: Border.all(color: Colors.white),
-                        ),
-                        child: Text(
-                          "  $year\nYear",
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txttday,
+                            decoration: InputDecoration(
+                              hintText: "DD",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 60,
-                        width: 60,
-                        decoration: const BoxDecoration(
-                          //border: Border.all(color: Colors.white),
-                        ),
-                        child: Text(
-                          "  $month\nMM",
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txttmonth,
+                            decoration: InputDecoration(
+                              hintText: "MM",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                          //border: Border.all(color: Colors.white),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txttyear,
+                            decoration: InputDecoration(
+                              hintText: "YYYY",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
                         ),
-                        child: Text(
-                          " $date\nDD",
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Date Of Birth"),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txtbday,
+                            decoration: InputDecoration(
+                              hintText: "DD",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txtbmonth,
+                            decoration: InputDecoration(
+                              hintText: "MM",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: TextField(
+                            controller: txtbyear,
+                            decoration: InputDecoration(
+                              hintText: "YYYY",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF203A43),
+                                    style: BorderStyle.solid,
+                                    width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                            });
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5)),
+                              border: Border.all(color: Colors.blue.shade900),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Clear",
+                              style: TextStyle(color: Colors.black87),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            String cday = txttday.text;
+                            String cmonth = txttmonth.text;
+                            String cyear = txttyear.text;
+                            String bday = txtbday.text;
+                            String bmonth = txtbmonth.text;
+                            String byear = txtbyear.text;
+                            int x = int.parse(cday);
+                            int y = int.parse(cmonth);
+                            int z = int.parse(cyear);
+                            int a = int.parse(bday);
+                            int b = int.parse(bmonth);
+                            int c = int.parse(byear);
+                            setState(() {
+                              tb=b;
+                              td=a;
+                              year = z-c;
+                              month =y-b;
+                              day =x-a;
+                            });
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey.shade700,
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5)),
+                              border: Border.all(color: Colors.blue.shade900),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Calculate",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Next Birthday",
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    color: Color(0xFF203A43),
+                  SizedBox(
+                    height: 15,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFF6BBED9),
-                        Color(0xFF006ABC),
+                  Text("Present Age"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        gradient: LinearGradient(
+                            colors: [Colors.blueGrey, Colors.blue])),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$year",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "Year",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$month",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "MM",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$day",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "DD",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-
-                      Container(
-                        alignment: Alignment.center,
-                        height: 60,
-                        width: 60,
-                        decoration: const BoxDecoration(
-                          //border: Border.all(color: Colors.white),
-                        ),
-                        child: Text(
-                          "  $month\nMM",
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                          //border: Border.all(color: Colors.white),
-                        ),
-                        child: Text(
-                          " $date\nDD",
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                    ],
+                  SizedBox(
+                    height: 15,
                   ),
-                ),
-              ],
+                  Text("Next Birthday"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      gradient: LinearGradient(
+                          colors: [Colors.blue, Colors.blueGrey]),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$tb",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "MM",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$td",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "DD",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
